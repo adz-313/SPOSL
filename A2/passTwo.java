@@ -40,11 +40,13 @@ class MyClass
 {
     private ArrayList<String> symtab;
     private ArrayList<String> littab;
+    boolean exceptionEncountered;
 
     MyClass()
     {
         symtab = new ArrayList<String>();
         littab = new ArrayList<String>();
+        exceptionEncountered = false;
         loadSYMTAB();
         loadLITTAB();
     }
@@ -113,6 +115,12 @@ class MyClass
             {
                 closeList.add(i);
             }
+        }
+        if(openList.size() != closeList.size())
+        {
+            System.out.println("Parenthesis error at location counter " + lc + ".");
+            exceptionEncountered = true;
+            return null;
         }
         String[] opcodeInfo = ic.substring(openList.get(0), closeList.get(0)).split(",");
         if(opcodeInfo[0].contains("DL") && opcodeInfo[1].contains("02"))
@@ -188,6 +196,10 @@ class MyClass
                 if(i != null)
                 {
                     passTwo.add(i);
+                }
+                else if(obj.exceptionEncountered)
+                {
+                    return;
                 }
             }
             Collections.sort(passTwo, new SortByLC());

@@ -1,6 +1,5 @@
 MACRO
 M1      &X,     &Y,     &A=AREG,    &B=
-LCL     &YO
 MOVER   &A,     &X
 ADD     &A,     ='1'
 MOVER   &A,     &Y

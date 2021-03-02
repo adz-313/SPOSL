@@ -101,9 +101,14 @@ class MyClass
         {
             tokenizer = new StringTokenizer(macro.get(i));
             String mdtString = "";
+            boolean isLastElement = false;
             while(tokenizer.hasMoreTokens())
             {
-                String temp = tokenizer.nextToken();                
+                String temp = tokenizer.nextToken();    
+                if(!tokenizer.hasMoreTokens())
+                {
+                    isLastElement = true;
+                }            
                 if(temp.startsWith("&"))
                 {
                     temp = temp.substring(1, temp.length());
@@ -123,21 +128,37 @@ class MyClass
                         ssntab = new ArrayList<String>();
                     }
                     evntab.add(temp);
-                    mdtString += "(E," + String.valueOf(evntab.indexOf(temp)+1) + ")  ";
+                    mdtString += "(E," + String.valueOf(evntab.indexOf(temp)+1) + ")";
+                    if(!isLastElement)
+                    {
+                        mdtString += ", ";
+                    }
+                    else
+                    {
+                        mdtString += " ";
+                    }
                     advMacro = false;
                 }
                 else if(pntabList.get(pntabList.size()-1).pntab.contains(temp))
                 {                    
-                    mdtString += "(P," + String.valueOf(pntabList.get(pntabList.size()-1).pntab.indexOf(temp)+1) + ")   "; 
+                    mdtString += "(P," + String.valueOf(pntabList.get(pntabList.size()-1).pntab.indexOf(temp)+1) + ")"; 
+                    if(!isLastElement)
+                    {
+                        mdtString += ", ";
+                    }
+                    else
+                    {
+                        mdtString += " ";
+                    }
                 }
                 else if(temp.equals("LCL") || temp.equals("GBL")) 
                 {
-                    mdtString += temp + "   ";
+                    mdtString += temp;
                     advMacro = true;
                 }
                 else
                 {
-                    mdtString += temp + "   ";
+                    mdtString += temp + " ";
                 }                
             }
             mdtab.add(mdtString);
