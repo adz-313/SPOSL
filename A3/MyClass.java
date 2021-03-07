@@ -10,8 +10,8 @@ class MyClass
     ArrayList<KeywordParameterDefaultTable> kpdtab;
     ArrayList<String> mdtab;
     ArrayList<ParameterNameTable> pntabList;
-    ArrayList<String> evntab;
-    ArrayList<String> ssntab;
+    // ArrayList<String> evntab;
+    // ArrayList<String> ssntab;
 
     MyClass()
     {
@@ -19,8 +19,8 @@ class MyClass
         kpdtab = new ArrayList<KeywordParameterDefaultTable>();
         mdtab = new ArrayList<String>();
         pntabList = new ArrayList<ParameterNameTable>();
-        evntab = null;
-        ssntab = null;
+        // evntab = null;
+        // ssntab = null;
     }
 
     public int getIndex(String keyword)
@@ -55,7 +55,7 @@ class MyClass
         boolean flag = true;
         int pnCntr = 0, kpdCntr = 0;
         int mdtp = mdtab.size(), kpdtp = kpdtab.size();
-        boolean advMacro = false;
+        // boolean advMacro = false;
         while(tokenizer.hasMoreTokens())
         {
             String token = tokenizer.nextToken();            
@@ -117,28 +117,28 @@ class MyClass
                 {
                     temp = temp.substring(0, temp.length()-1);
                 }
-                if(advMacro)
-                {
-                    if(evntab == null)
-                    {
-                        evntab = new ArrayList<String>();
-                    }
-                    if(ssntab == null)
-                    {
-                        ssntab = new ArrayList<String>();
-                    }
-                    evntab.add(temp);
-                    mdtString += "(E," + String.valueOf(evntab.indexOf(temp)+1) + ")";
-                    if(!isLastElement)
-                    {
-                        mdtString += ", ";
-                    }
-                    else
-                    {
-                        mdtString += " ";
-                    }
-                    advMacro = false;
-                }
+                // if(advMacro)
+                // {
+                //     if(evntab == null)
+                //     {
+                //         evntab = new ArrayList<String>();
+                //     }
+                //     if(ssntab == null)
+                //     {
+                //         ssntab = new ArrayList<String>();
+                //     }
+                //     evntab.add(temp);
+                //     mdtString += "(E," + String.valueOf(evntab.indexOf(temp)+1) + ")";
+                //     if(!isLastElement)
+                //     {
+                //         mdtString += ", ";
+                //     }
+                //     else
+                //     {
+                //         mdtString += " ";
+                //     }
+                //     advMacro = false;
+                // }
                 else if(pntabList.get(pntabList.size()-1).pntab.contains(temp))
                 {                    
                     mdtString += "(P," + String.valueOf(pntabList.get(pntabList.size()-1).pntab.indexOf(temp)+1) + ")"; 
@@ -151,11 +151,11 @@ class MyClass
                         mdtString += " ";
                     }
                 }
-                else if(temp.equals("LCL") || temp.equals("GBL")) 
-                {
-                    mdtString += temp;
-                    advMacro = true;
-                }
+                // else if(temp.equals("LCL") || temp.equals("GBL")) 
+                // {
+                //     mdtString += temp;
+                //     advMacro = true;
+                // }
                 else
                 {
                     mdtString += temp + " ";
@@ -242,11 +242,11 @@ class MyClass
         }
         System.out.println("");
         System.out.println("");
-        System.out.println("EVNTAB");
-        for(String s: obj.evntab)
-        {
-            System.out.println(s);
-        }
+        // System.out.println("EVNTAB");
+        // for(String s: obj.evntab)
+        // {
+        //     System.out.println(s);
+        // }
         /*for(String s: macro)
         {
             System.out.println(s);
