@@ -143,9 +143,12 @@ class MyClass
         {
             FileReader fr = new FileReader("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A3\\macroInput2.asm");
             BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\macroInput.asm");
             while ((temp = br.readLine()) != null) {
+                fw.write(temp + "\n");
                 code += temp + "\n"; 
             } 
+            fw.close();
             br.close();
             fr.close();
         }
@@ -219,13 +222,27 @@ class MyClass
             fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\mdtab.txt");
             for(String s: obj.mdtab)
             {
-                fw.write(cntr+ "  " + s + "\n");
+                fw.write(s + "\n");
                 System.out.println(cntr+ "  " + s);
                 cntr++;
             }
             fw.close();
             System.out.println("");
             System.out.println("");
+            try
+            {
+                FileReader fr = new FileReader("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A3\\macroInput2.asm");
+                BufferedReader br = new BufferedReader(fr);
+                while ((temp = br.readLine()) != null) {
+                    code += temp + "\n"; 
+                } 
+                br.close();
+                fr.close();
+            }
+            catch(IOException e)
+            {
+                System.out.println("File not found");
+            }
         }
         catch(IOException e)
         {

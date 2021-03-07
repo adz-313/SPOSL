@@ -38,5 +38,5 @@ public class MacroNameTable
     public int getKPDPointer()
     {
         return kpdtPointer;
-    }
+    } 
 }
