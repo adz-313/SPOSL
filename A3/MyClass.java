@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -176,48 +177,59 @@ class MyClass
         }      
 
         //Print output
-        for(int i=0; i<obj.pntabList.size(); i++)
+        try
         {
-            System.out.println("PNTAB for " + obj.pntabList.get(i).macroName);
-            for(String s: obj.pntabList.get(i).pntab)
+            FileWriter fw;
+            for(int i=0; i<obj.pntabList.size(); i++)
             {
-                System.out.println(s);
+                fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\" + obj.pntabList.get(i).macroName +".txt");
+                System.out.println("PNTAB for " + obj.pntabList.get(i).macroName);
+                for(String s: obj.pntabList.get(i).pntab)
+                {
+                    fw.write(s + "\n");
+                    System.out.println(s);
+                }
+                fw.close();
+                System.out.println("");
+                System.out.println("");
+            }     
+            System.out.println("KPDTAB");
+            System.out.println("Name    Value");             
+            fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\kpdtab.txt");
+            for(KeywordParameterDefaultTable s: obj.kpdtab)
+            {
+                fw.write(s.getKeywordParam() + " " + s.getDefaultValue() + "\n");
+                System.out.println(s.getKeywordParam() + "  " + s.getDefaultValue());
             }
+            fw.close();
             System.out.println("");
             System.out.println("");
-        }     
-        System.out.println("KPDTAB");
-        System.out.println("Name    Value");  
-        for(KeywordParameterDefaultTable s: obj.kpdtab)
-        {
-            System.out.println(s.getKeywordParam() + "  " + s.getDefaultValue());
+            System.out.println("MNT");
+            fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\mntab.txt");
+            for(MacroNameTable s: obj.mntab)
+            {
+                fw.write(s.getMacroName() + " " + s.getPositionalParam() + " " + s.getKeywordParam() + " " + s.getMDTPointer() + " " + s.getKPDPointer() + "\n");
+                System.out.println(s.getMacroName() + " " + s.getPositionalParam() + " " + s.getKeywordParam() + " " + s.getMDTPointer() + " " + s.getKPDPointer());
+            }
+            fw.close();
+            System.out.println("");
+            System.out.println("");
+            System.out.println("MDT");
+            int cntr = 1;
+            fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\mdtab.txt");
+            for(String s: obj.mdtab)
+            {
+                fw.write(cntr+ "  " + s + "\n");
+                System.out.println(cntr+ "  " + s);
+                cntr++;
+            }
+            fw.close();
+            System.out.println("");
+            System.out.println("");
         }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("MNT");
-        for(MacroNameTable s: obj.mntab)
+        catch(IOException e)
         {
-            System.out.println(s.getMacroName() + " " + s.getPositionalParam() + " " + s.getKeywordParam() + " " + s.getMDTPointer() + " " + s.getKPDPointer());
+            e.printStackTrace();
         }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("MDT");
-        int cntr = 1;
-        for(String s: obj.mdtab)
-        {
-            System.out.println(cntr+ "  " + s);
-            cntr++;
-        }
-        System.out.println("");
-        System.out.println("");
-        // System.out.println("EVNTAB");
-        // for(String s: obj.evntab)
-        // {
-        //     System.out.println(s);
-        // }
-        /*for(String s: macro)
-        {
-            System.out.println(s);
-        }*/
     }
 }
