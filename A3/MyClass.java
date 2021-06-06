@@ -141,7 +141,7 @@ class MyClass
         String code = ""; 
         try
         {
-            FileReader fr = new FileReader("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A3\\macroInput2.asm");
+            FileReader fr = new FileReader("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A3\\macroInput.asm");
             BufferedReader br = new BufferedReader(fr);
             FileWriter fw = new FileWriter("C:\\Users\\Admin\\Desktop\\TE\\Practical\\SPOSL\\A4\\macroInput.asm");
             while ((temp = br.readLine()) != null) {

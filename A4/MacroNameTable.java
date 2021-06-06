@@ -39,4 +39,9 @@ public class MacroNameTable
     {
         return kpdtPointer;
     } 
+
+    public String toString()
+    {
+        return (macroName + " " + positionalParam + " " + keywordParam + " " + mdtPointer + " " + kpdtPointer);
+    }
 }

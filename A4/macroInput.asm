@@ -1,16 +1,20 @@
 MACRO
-INCR_D  &MEM_VAL, &INCR_VAL=, &REG=AREG
-MOVER   &REG,     &MEM_VAL
-ADD     &REG,     &INCR_VAL
-MOVEM   &REG,     &MEM_VAL
-MEND
-MACRO
-COMPUTE &FIRST,   &SECOND,  &THIRD=100
-MOVEM   BREG,     &THIRD
-MOVER   BREG,     &THIRD
-ADD     BREG,     &THIRD
+M1      &X,     &Y,     &A
+MOVER   &A,     &X
+ADD     &A,     ='1'
+MOVER   &A,     &Y
+ADD     &A,     ='5'
 MEND
 START
-INCR_D  AREA,     &INCR_VAL=3
-COMPUTE AREA,     3
+M1      10,     20,     CREG
+MOVER   AREG,   50
+MACRO
+M2      &P,     &Q,     &U,    &V
+MOVER   &U,     &P
+MOVER   &V,     &Q
+ADD     &U,     ='15'
+ADD     &V,     ='10'
+MEND
+M2      30,     40,     AREG,  DREG
+STOP
 END
